@@ -21,4 +21,9 @@ public class PosService {
         Table table = TableRepository.findByNumber(tableNumber);
         return table.getMenus();
     }
+
+    public int pay(PayType payType, int tableNumber) {
+        Table table = TableRepository.findByNumber(tableNumber);
+        return PayMachine.calculatePrice(payType, table.getMenus());
+    }
 }
