@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class MenuRepository {
+
+    private static final String ERROR_NOT_EXIST_MENU = "해당 메뉴번호는 없습니다.";
     private static final List<Menu> menus = new ArrayList<>();
 
     static {
@@ -26,6 +28,6 @@ public class MenuRepository {
         return menus().stream()
                 .filter(menu -> menu.isSameNumber(number))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXIST_MENU));
     }
 }
