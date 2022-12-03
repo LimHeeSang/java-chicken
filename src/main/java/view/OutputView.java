@@ -1,6 +1,7 @@
 package view;
 
 import domain.MenuDto;
+import domain.OrderMenuDto;
 
 import java.util.List;
 
@@ -45,6 +46,18 @@ public class OutputView {
                     .append(menu.getNumber()).append(" - ")
                     .append(menu.getName()).append(" : ")
                     .append(menu.getPrice()).append("원");
+            System.out.println(builder);
+        }
+    }
+
+    public static void printOrderMenus(List<OrderMenuDto> menus) {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+        for (OrderMenuDto menu : menus) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(menu.getName()).append(" ")
+                    .append(menu.getCount()).append(" ")
+                    .append(menu.getPrice());
             System.out.println(builder);
         }
     }
