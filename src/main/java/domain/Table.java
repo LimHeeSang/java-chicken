@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Table {
 
+    private static final int DEFAULT_COUNT = 0;
     private final int number;
     private final Map<Menu, Integer> menus;
 
@@ -21,7 +22,7 @@ public class Table {
     }
 
     public void saveMenu(Menu menu, int count) {
-        menus.put(menu, count);
+        menus.put(menu, menus.getOrDefault(menu, DEFAULT_COUNT) + count);
     }
 
     public List<MenuDto> getMenus() {

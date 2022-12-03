@@ -1,5 +1,7 @@
 package domain;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -9,17 +11,34 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class TableTest {
 
+    private Table table;
+
+    @BeforeEach
+    void setUp() {
+        table = new Table(1);
+    }
+
     @CsvSource(value = {"1,후라이드,16000", "2,양념치킨,16000", "3,반반치킨,16000"})
     @ParameterizedTest
     void 메뉴와_메뉴수량을_저장(int number, String name, int price) {
         Menu menu = new Menu(number, name, Category.CHICKEN, price);
-        Table table = new Table(1);
-
         table.saveMenu(menu, 3);
 
         List<MenuDto> menus = table.getMenus();
         assertThat(menus.get(0).getName()).isEqualTo(name);
         assertThat(menus.get(0).getCount()).isEqualTo(3);
         assertThat(menus.get(0).getPrice()).isEqualTo(price);
+    }
+
+    @Test
+    void 동일메뉴_여러번저장시_메뉴개수_테스트() {
+        Menu firstMenu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
+        Menu secondMenu = new Menu(1, "후라이드", Category.CHICKEN, 16000);
+
+        table.saveMenu(firstMenu, 10);
+        table.saveMenu(secondMenu, 4);
+
+        List<MenuDto> menus = table.getMenus();
+        assertThat(menus.get(0).getCount()).isEqualTo(14);
     }
 }
