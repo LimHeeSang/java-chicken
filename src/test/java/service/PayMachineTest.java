@@ -42,9 +42,9 @@ public class PayMachineTest {
     }
 
     @Test
-    void 카드결제할인금액_계산() {
+    void 치킨할인_현금할인_총결제금액_계산() {
         List<MenuDto> menus = createDiscountMenuDtos();
-        int discount = PayMachine.calculatePayTypeDiscount(menus);
-        assertThat(discount).isEqualTo(41650);
+        int price = PayMachine.calculatePrice(PayType.CASH, menus);
+        assertThat(price).isEqualTo(743850);
     }
 }

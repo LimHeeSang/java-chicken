@@ -9,6 +9,12 @@ public class PayMachine {
     private static final int CHICKEN_DISCOUNT_PRICE = 10000;
     private static final int CHICKEN_DISCOUNT_COUNT = 10;
 
+    public static int calculatePrice(PayType payType, List<MenuDto> menus) {
+        int price = calculatePrice(menus);
+        price -= calculateChickenDiscount(menus);
+        return payType.calculate(price);
+    }
+
     public static int calculatePrice(List<MenuDto> menus) {
         return menus.stream()
                 .mapToInt(m -> m.getPrice() * m.getCount())
@@ -21,9 +27,5 @@ public class PayMachine {
                 .mapToInt(MenuDto::getCount)
                 .sum();
         return (count / CHICKEN_DISCOUNT_COUNT) * CHICKEN_DISCOUNT_PRICE;
-    }
-
-    public static int calculatePayTypeDiscount(List<MenuDto> menus) {
-        return (int) (calculatePrice(menus) * 0.05);
     }
 }
