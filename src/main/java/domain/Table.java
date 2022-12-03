@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 public class Table {
 
     private static final int DEFAULT_COUNT = 0;
+    private static final String ERROR_INVALID_MAXIMUM_MENU_COUNT = "한 메뉴의 최대 수량을 99개가 넘어갈 수 없습니다.";
+    private static final int MAXIMUM_MENU_COUNT = 99;
+
     private final int number;
     private final Map<Menu, Integer> menus;
 
@@ -22,7 +25,15 @@ public class Table {
     }
 
     public void saveMenu(Menu menu, int count) {
-        menus.put(menu, menus.getOrDefault(menu, DEFAULT_COUNT) + count);
+        count += menus.getOrDefault(menu, DEFAULT_COUNT);
+        validateCount(count);
+        menus.put(menu, count);
+    }
+
+    private void validateCount(int count) {
+        if (count > MAXIMUM_MENU_COUNT) {
+            throw new IllegalArgumentException(ERROR_INVALID_MAXIMUM_MENU_COUNT);
+        }
     }
 
     public List<MenuDto> getMenus() {
