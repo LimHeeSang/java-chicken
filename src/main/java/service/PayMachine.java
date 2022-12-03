@@ -22,4 +22,8 @@ public class PayMachine {
                 .sum();
         return (count / CHICKEN_DISCOUNT_COUNT) * CHICKEN_DISCOUNT_PRICE;
     }
+
+    public static int calculatePayTypeDiscount(List<MenuDto> menus) {
+        return (int) (calculatePrice(menus) * 0.05);
+    }
 }

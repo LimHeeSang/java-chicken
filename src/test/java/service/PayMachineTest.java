@@ -28,16 +28,23 @@ public class PayMachineTest {
 
     @Test
     void 치킨할인금액_계산() {
-        List<MenuDto> menus = createChickenDiscountMenuDtos();
+        List<MenuDto> menus = createDiscountMenuDtos();
         int discount = PayMachine.calculateChickenDiscount(menus);
         assertThat(discount).isEqualTo(50000);
     }
 
-    private List<MenuDto> createChickenDiscountMenuDtos() {
+    private List<MenuDto> createDiscountMenuDtos() {
         List<MenuDto> menus = new ArrayList<>();
         menus.add(new MenuDto("후라이드", Category.CHICKEN, 35, 16000));
         menus.add(new MenuDto("양념치킨", Category.CHICKEN, 17, 16000));
         menus.add(new MenuDto("콜라", Category.BEVERAGE, 1, 1000));
         return menus;
+    }
+
+    @Test
+    void 카드결제할인금액_계산() {
+        List<MenuDto> menus = createDiscountMenuDtos();
+        int discount = PayMachine.calculatePayTypeDiscount(menus);
+        assertThat(discount).isEqualTo(41650);
     }
 }
