@@ -28,7 +28,7 @@ public class Menu {
     }
 
     public MenuDto toDto(int count) {
-        return new MenuDto(name, count, price);
+        return new MenuDto(name, category, count, price);
     }
 
     @Override

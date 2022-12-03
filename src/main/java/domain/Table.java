@@ -1,11 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Table {
@@ -22,16 +20,22 @@ public class Table {
         return this.number == number;
     }
 
+    public void saveMenu(Menu menu, int count) {
+        menus.put(menu, count);
+    }
+
+    public List<MenuDto> getMenus() {
+        return menus.entrySet().stream()
+                .map(e -> e.getKey().toDto(e.getValue()))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Table table = (Table) o;
         return number == table.number;
-    }
-
-    public void saveMenu(Menu menu, int count) {
-        menus.put(menu, count);
     }
 
     @Override
@@ -42,11 +46,5 @@ public class Table {
     @Override
     public String toString() {
         return Integer.toString(number);
-    }
-
-    public List<MenuDto> getMenus() {
-        return menus.entrySet().stream()
-                .map(e -> e.getKey().toDto(e.getValue()))
-                .collect(Collectors.toList());
     }
 }
