@@ -18,6 +18,10 @@ public class MenuDto {
         return name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public int getCount() {
         return count;
     }
