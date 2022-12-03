@@ -61,4 +61,9 @@ public class OutputView {
             System.out.println(builder);
         }
     }
+
+    public static void printOrderPrice(int price) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.printf("%d원\n", price);
+    }
 }
