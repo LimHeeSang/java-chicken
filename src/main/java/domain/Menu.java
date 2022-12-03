@@ -27,8 +27,12 @@ public class Menu {
         return number == menu.number && price == menu.price && Objects.equals(name, menu.name) && category == menu.category;
     }
 
-    public OrderMenuDto toDto(int count) {
+    public OrderMenuDto toOrderMenuDto(int count) {
         return new OrderMenuDto(name, category, count, price);
+    }
+
+    public MenuDto toMenuDto() {
+        return new MenuDto(number, name, category, price);
     }
 
     @Override

@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuRepository {
 
@@ -29,5 +30,11 @@ public class MenuRepository {
                 .filter(menu -> menu.isSameNumber(number))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXIST_MENU));
+    }
+
+    public static List<MenuDto> getMenus() {
+        return menus().stream()
+                .map(Menu::toMenuDto)
+                .collect(Collectors.toList());
     }
 }

@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TableRepository {
 
@@ -28,5 +28,11 @@ public class TableRepository {
                 .filter(table -> table.isSameNumber(number))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXIST_TABLE));
+    }
+
+    public static List<Integer> getTableNumbers() {
+        return tables().stream()
+                .map(Table::getNumber)
+                .collect(Collectors.toList());
     }
 }
