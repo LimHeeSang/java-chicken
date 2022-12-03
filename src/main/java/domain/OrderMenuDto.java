@@ -1,21 +1,17 @@
 package domain;
 
-public class MenuDto {
+public class OrderMenuDto {
 
-    private final int number;
     private final String name;
     private final Category category;
+    private final int count;
     private final int price;
 
-    public MenuDto(int number, String name, Category category, int price) {
-        this.number = number;
+    public OrderMenuDto(String name, Category category, int count, int price) {
         this.name = name;
         this.category = category;
+        this.count = count;
         this.price = price;
-    }
-
-    public int getNumber() {
-        return number;
     }
 
     public String getName() {
@@ -24,6 +20,10 @@ public class MenuDto {
 
     public Category getCategory() {
         return category;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public int getPrice() {

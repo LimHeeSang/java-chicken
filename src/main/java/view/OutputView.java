@@ -1,6 +1,6 @@
 package view;
 
-import domain.Menu;
+import domain.MenuDto;
 
 import java.util.List;
 
@@ -38,10 +38,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printMenus(final List<Menu> menus) {
-        for (final Menu menu : menus) {
-            System.out.println(menu);
+    public static void printMenus(final List<MenuDto> menus) {
+        for (final MenuDto menu : menus) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(menu.getCategory()).append(" ")
+                    .append(menu.getNumber()).append(" - ")
+                    .append(menu.getName()).append(" : ")
+                    .append(menu.getPrice()).append("원");
+            System.out.println(builder);
         }
     }
-
 }

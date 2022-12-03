@@ -25,7 +25,7 @@ class TableTest {
         Menu menu = new Menu(number, name, Category.CHICKEN, price);
         table.saveMenu(menu, 3);
 
-        List<MenuDto> menus = table.getMenus();
+        List<OrderMenuDto> menus = table.getMenus();
         assertThat(menus.get(0).getName()).isEqualTo(name);
         assertThat(menus.get(0).getCount()).isEqualTo(3);
         assertThat(menus.get(0).getPrice()).isEqualTo(price);
@@ -39,7 +39,7 @@ class TableTest {
         table.saveMenu(firstMenu, 10);
         table.saveMenu(secondMenu, 4);
 
-        List<MenuDto> menus = table.getMenus();
+        List<OrderMenuDto> menus = table.getMenus();
         assertThat(menus.get(0).getCount()).isEqualTo(14);
     }
 

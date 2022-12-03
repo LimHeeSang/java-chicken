@@ -36,7 +36,7 @@ public class Table {
         }
     }
 
-    public List<MenuDto> getMenus() {
+    public List<OrderMenuDto> getMenus() {
         return menus.entrySet().stream()
                 .map(e -> e.getKey().toDto(e.getValue()))
                 .collect(Collectors.toList());
@@ -53,10 +53,5 @@ public class Table {
     @Override
     public int hashCode() {
         return Objects.hash(number);
-    }
-
-    @Override
-    public String toString() {
-        return Integer.toString(number);
     }
 }

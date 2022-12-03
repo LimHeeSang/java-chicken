@@ -1,7 +1,7 @@
 package service;
 
 import domain.Menu;
-import domain.MenuDto;
+import domain.OrderMenuDto;
 import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
@@ -17,7 +17,7 @@ public class PosService {
         table.saveMenu(menu, menuCount);
     }
 
-    public List<MenuDto> getMenus(int tableNumber) {
+    public List<OrderMenuDto> getMenus(int tableNumber) {
         Table table = TableRepository.findByNumber(tableNumber);
         return table.getMenus();
     }
