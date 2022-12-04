@@ -12,7 +12,7 @@ public class PayFeature implements Feature {
         OutputView.printTables(posService.getTableNumbers());
         int tableNumber = InputView.inputTableNumber();
 
-        OutputView.printOrderMenus(posService.getMenus(tableNumber));
+        OutputView.printOrderMenus(posService.getOrderMenus(tableNumber));
 
         PayType payType = InputView.inputPayNumber(tableNumber);
         int price = posService.pay(payType, tableNumber);

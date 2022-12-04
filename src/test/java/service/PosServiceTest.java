@@ -21,7 +21,7 @@ class PosServiceTest {
     void 주문등록_서비스() {
         posService.createOrder(1, 1, 5);
         posService.createOrder(1, 1, 2);
-        List<OrderMenuDto> menus = posService.getMenus(1);
+        List<OrderMenuDto> menus = posService.getOrderMenus(1);
 
         assertThat(menus.get(0).getCount()).isEqualTo(7);
         assertThat(menus.get(0).getName()).isEqualTo("후라이드");

@@ -17,5 +17,4 @@ public class OrderFeature implements Feature {
         int menuCount = InputView.inputMenuCount();
         posService.createOrder(tableNumber, menuNumber, menuCount);
     }
-
 }

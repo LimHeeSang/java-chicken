@@ -17,7 +17,6 @@ public class PosController {
         do {
             OutputView.printFeatures();
             feature = InputView.inputFeatureNumber();
-
             feature.operate(posService);
         } while (!feature.isEnd());
     }

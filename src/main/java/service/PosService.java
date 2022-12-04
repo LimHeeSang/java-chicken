@@ -17,7 +17,7 @@ public class PosService {
         table.saveMenu(menu, menuCount);
     }
 
-    public List<OrderMenuDto> getMenus(int tableNumber) {
+    public List<OrderMenuDto> getOrderMenus(int tableNumber) {
         Table table = TableRepository.findByNumber(tableNumber);
         return table.getMenus();
     }
