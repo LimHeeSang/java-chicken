@@ -37,24 +37,16 @@ public class InputView {
     }
 
     public static int inputTableNumber() {
-        printBlank();
         System.out.println(INPUT_TABLE_NUMBER_MESSAGE);
         return inputNumber();
     }
 
     public static int inputMenuNumber() {
-        printBlank();
         System.out.println(INPUT_MENU_NUMBER_MESSAGE);
         return inputNumber();
     }
 
-    private static void printBlank() {
-        System.out.println();
-    }
-
-
     public static int inputMenuCount() {
-        printBlank();
         System.out.println(INPUT_MENU_COUNT_MESSAGE);
         return inputNumber();
     }
