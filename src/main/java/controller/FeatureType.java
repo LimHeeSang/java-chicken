@@ -27,7 +27,12 @@ public enum FeatureType {
     }
 
     public void operate(PosService posService) {
-        feature.operate(posService);
+        try {
+            feature.operate(posService);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            operate(posService);
+        }
     }
 
     private boolean isEqualNumber(int number) {
