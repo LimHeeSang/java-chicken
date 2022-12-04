@@ -15,6 +15,11 @@ public class OutputView {
         System.out.println("1 - 주문등록");
         System.out.println("2 - 결제하기");
         System.out.println( "3 - 프로그램 종료");
+        printBlank();
+    }
+
+    private static void printBlank() {
+        System.out.println();
     }
 
     public static void printTables(final List<Integer> tableNumbers) {
@@ -23,47 +28,50 @@ public class OutputView {
         printLine(TOP_LINE, size);
         printTableNumbers(tableNumbers);
         printLine(BOTTOM_LINE, size);
+        printBlank();
     }
 
     private static void printLine(final String line, final int count) {
         for (int index = 0; index < count; index++) {
             System.out.print(line);
         }
-        System.out.println();
+        printBlank();
     }
 
     private static void printTableNumbers(final List<Integer> tableNumbers) {
         for (final int tableNumber : tableNumbers) {
             System.out.printf(TABLE_FORMAT, tableNumber);
         }
-        System.out.println();
+        printBlank();
     }
 
     public static void printMenus(final List<MenuDto> menus) {
+        printBlank();
         for (final MenuDto menu : menus) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(menu.getCategory()).append(" ")
-                    .append(menu.getNumber()).append(" - ")
-                    .append(menu.getName()).append(" : ")
-                    .append(menu.getPrice()).append("원");
-            System.out.println(builder);
+            String menuInfo = menu.getCategory() + " " +
+                    menu.getNumber() + " - " +
+                    menu.getName() + " : " +
+                    menu.getPrice() + "원";
+            System.out.println(menuInfo);
         }
+        printBlank();
     }
 
     public static void printOrderMenus(List<OrderMenuDto> menus) {
         System.out.println("## 주문 내역");
         System.out.println("메뉴 수량 금액");
         for (OrderMenuDto menu : menus) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(menu.getName()).append(" ")
-                    .append(menu.getCount()).append(" ")
-                    .append(menu.getPrice());
-            System.out.println(builder);
+            String menuInfo = menu.getName() + " " +
+                    menu.getCount() + " " +
+                    menu.getPrice();
+            System.out.println(menuInfo);
         }
+        printBlank();
     }
 
     public static void printOrderPrice(int price) {
         System.out.println("## 최종 결제할 금액");
         System.out.printf("%d원\n", price);
+        printBlank();
     }
 }
