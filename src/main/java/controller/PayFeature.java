@@ -1,5 +1,6 @@
 package controller;
 
+import service.PayType;
 import service.PosService;
 import view.InputView;
 import view.OutputView;
@@ -11,10 +12,11 @@ public class PayFeature implements Feature {
         OutputView.printTables(posService.getTableNumbers());
         int tableNumber = InputView.inputTableNumber();
 
-        OutputView.printMenus(posService.getMenus());
-        int menuNumber = InputView.inputMenuNumber();
+        OutputView.printOrderMenus(posService.getMenus(tableNumber));
 
-        int menuCount = InputView.inputMenuCount();
-        posService.createOrder(tableNumber, menuNumber, menuCount);
+        PayType payType = InputView.inputPayNumber(tableNumber);
+        int price = posService.pay(payType, tableNumber);
+
+        OutputView.printOrderPrice(price);
     }
 }
