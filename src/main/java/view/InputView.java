@@ -1,5 +1,6 @@
 package view;
 
+import controller.FeatureType;
 import service.PayType;
 
 import java.util.InputMismatchException;
