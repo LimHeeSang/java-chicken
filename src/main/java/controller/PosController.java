@@ -2,14 +2,12 @@ package controller;
 
 import service.PayType;
 import service.PosService;
+import view.FeatureType;
 import view.InputView;
 import view.OutputView;
 
 public class PosController {
 
-    private static final int ORDER_FEATURE_NUMBER = 1;
-    private static final int PAY_FEATURE_NUMBER = 2;
-    private static final int END_FEATURE_NUMBER = 3;
     private final PosService posService;
 
     public PosController(PosService posService) {
@@ -17,18 +15,18 @@ public class PosController {
     }
 
     public void run() {
-        int feature;
+        FeatureType feature;
         do {
             OutputView.printFeatures();
             feature = InputView.inputFeatureNumber();
 
-            if (feature == ORDER_FEATURE_NUMBER) {
+            if (feature.isOrder()) {
                 featurePay();
             }
-            if (feature == PAY_FEATURE_NUMBER) {
+            if (feature.isPay()) {
                 featureOrder();
             }
-        } while (feature != END_FEATURE_NUMBER);
+        } while (!feature.isEnd());
     }
 
     private void featureOrder() {
@@ -37,8 +35,8 @@ public class PosController {
 
         OutputView.printOrderMenus(posService.getMenus(tableNumber));
 
-        int payNumber = InputView.inputPayNumber(tableNumber);
-        int price = posService.pay(PayType.of(payNumber), tableNumber);
+        PayType payType = InputView.inputPayNumber(tableNumber);
+        int price = posService.pay(payType, tableNumber);
 
         OutputView.printOrderPrice(price);
     }
